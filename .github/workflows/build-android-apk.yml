@@ -21,6 +21,8 @@ jobs:
         run: npx expo prebuild --platform android --clean
         env:
           EXPO_NO_DOTENV: 1
+      - name: Enable JS bundle in debug builds
+        run: echo "bundleInDebug=true" >> android/gradle.properties
       - name: Build APK
         run: |
           cd android
