@@ -22,7 +22,20 @@ jobs:
         env:
           EXPO_NO_DOTENV: 1
       - name: Enable JS bundle in debug builds
-        run: echo "bundleInDebug=true" >> android/gradle.properties
+        run: |
+          python3 -c "
+          import re
+          with open('android/app/build.gradle') as f:
+              c = f.read()
+          if 'debuggableVariants' in c:
+              c = re.sub(r'debuggableVariants\s*=\s*\[.*?\]', 'debuggableVariants = []', c)
+          else:
+              c = c.replace('react {', 'react {\n    debuggableVariants = []', 1)
+          with open('android/app/build.gradle', 'w') as f:
+              f.write(c)
+          print('Updated build.gradle: debuggableVariants cleared')
+          "
+          grep 'debuggableVariants' android/app/build.gradle || echo 'WARNING: not found' 
       - name: Build APK
         run: |
           cd android
