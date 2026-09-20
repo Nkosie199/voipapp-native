@@ -4,6 +4,22 @@
   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
   <uses-permission android:name="android.permission.VIBRATE"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <!-- WebRTC calls/livestream inside the WebView need these OS-level grants
+       before WebView.onPermissionRequest can hand getUserMedia() anything -
+       declaring them here is necessary but not sufficient, they're also
+       requested at runtime in App.js the first time the page asks for them. -->
+  <uses-permission android:name="android.permission.CAMERA"/>
+  <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+  <!-- Android 13+ requires this to show any notification, including the
+       incoming-call push shown while the app is backgrounded. -->
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+  <!-- Optional hardware: a phone with no camera can still place/receive
+       audio-only calls, so this app shouldn't be blocked from installing
+       on one (Play Store treats a required <uses-feature> as a hard filter). -->
+  <uses-feature android:name="android.hardware.camera" android:required="false"/>
+  <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+  <uses-feature android:name="android.hardware.microphone" android:required="false"/>
   <queries>
     <intent>
       <action android:name="android.intent.action.VIEW"/>
@@ -15,6 +31,10 @@
     <meta-data android:name="expo.modules.updates.ENABLED" android:value="false"/>
     <meta-data android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH" android:value="ALWAYS"/>
     <meta-data android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS" android:value="0"/>
+    <!-- Tints the default (system) notification icon - expo-notifications
+         reads this meta-data itself; no custom monochrome icon asset
+         required for it to take effect. -->
+    <meta-data android:name="expo.modules.notifications.default_notification_color" android:resource="@color/notification_icon_color"/>
     <activity android:name=".MainActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode" android:launchMode="singleTask" android:windowSoftInputMode="adjustResize" android:theme="@style/Theme.App.SplashScreen" android:exported="true" android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
