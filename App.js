@@ -5,7 +5,7 @@ import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import * as Device from "expo-device";
 
-const APP_URL = "https://main.d1vzl1fu2jafco.amplifyapp.com/";
+const APP_URL = "https://voipapp.mynger.com/";
 
 // Camera/mic access for calls and Go Live: react-native-webview's Android
 // WebChromeClient already requests RECORD_AUDIO/CAMERA at the OS level and
