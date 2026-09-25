@@ -15,7 +15,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "VoipApp needs camera access to make video calls.",
+        "NSMicrophoneUsageDescription": "VoipApp needs microphone access to make calls and go live."
+      }
     },
     "android": {
       "versionCode": 2,
@@ -24,12 +28,27 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.mynger.voipapp",
-      "edgeToEdgeEnabled": false
+      "edgeToEdgeEnabled": false,
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO",
+        "MODIFY_AUDIO_SETTINGS",
+        "POST_NOTIFICATIONS"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "owner": "mynger",
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#6750A4"
+        }
+      ]
+    ],
     "extra": {
       "eas": {
         "projectId": "ee40bdfb-7803-463f-8c72-13e3316f58a9"
