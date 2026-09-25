@@ -7,7 +7,7 @@ export default function App() {
     return (
       <View style={styles.container}>
         <iframe
-          src="https://main.d1vzl1fu2jafco.amplifyapp.com/"
+          src="https://voipapp.mynger.com/"
           style={styles.iframe}
           title="VoipApp"
         />
@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <WebView
-      source={{ uri: "https://main.d1vzl1fu2jafco.amplifyapp.com/" }}
+      source={{ uri: "https://voipapp.mynger.com/" }}
       style={styles.container}
     />
   );
