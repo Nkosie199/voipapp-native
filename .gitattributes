@@ -1,0 +1,25 @@
+# Normalize line endings to LF for everything git considers text, regardless
+# of the committer's OS or editor - see MyngerProjects/CLAUDE.md and this
+# repo's own CLAUDE.md ("Repo-wide line-ending note") for the ~110+ file
+# CRLF/LF drift this fixes. Supersedes any contributor's local
+# core.autocrlf setting for files in this repo.
+* text=auto eol=lf
+
+# Keep Windows batch files CRLF - they can fail to run under cmd.exe with
+# bare LF.
+*.bat text eol=crlf
+
+# Binary assets - never touch, never diff as text.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.mp3 binary
+*.mp4 binary
+*.wav binary
