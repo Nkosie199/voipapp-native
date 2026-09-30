@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { WebView } from "react-native-webview";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import * as Device from "expo-device";
@@ -116,15 +118,20 @@ export default function App() {
   }
 
   return (
-    <WebView
-      ref={webviewRef}
-      source={{ uri: APP_URL }}
-      style={styles.container}
-      onLoadEnd={handleLoadEnd}
-      mediaPlaybackRequiresUserAction={false}
-      javaScriptEnabled
-      domStorageEnabled
-    />
+    <SafeAreaProvider>
+      <StatusBar style="dark" />
+      <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
+        <WebView
+          ref={webviewRef}
+          source={{ uri: APP_URL }}
+          style={styles.webview}
+          onLoadEnd={handleLoadEnd}
+          mediaPlaybackRequiresUserAction={false}
+          javaScriptEnabled
+          domStorageEnabled
+        />
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
@@ -133,6 +140,9 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     backgroundColor: "white",
+  },
+  webview: {
+    flex: 1,
   },
   iframe: {
     flex: 1,
