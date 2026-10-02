@@ -2,12 +2,12 @@
   "expo": {
     "name": "voipapp",
     "slug": "voipapp",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,13 +22,12 @@
       }
     },
     "android": {
-      "versionCode": 2,
+      "versionCode": 4,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.mynger.voipapp",
-      "edgeToEdgeEnabled": false,
       "permissions": [
         "CAMERA",
         "RECORD_AUDIO",
@@ -46,6 +45,15 @@
         {
           "icon": "./assets/icon.png",
           "color": "#6750A4"
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "imageWidth": 200
         }
       ]
     ],
